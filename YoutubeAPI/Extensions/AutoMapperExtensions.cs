@@ -7,7 +7,7 @@ namespace YoutubeAPI.Extensions
     {
         public static IServiceCollection AddAutoMapperProfiles(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(VideoMappingProfile), typeof(YoutuberMappingProfile));
+            services.AddAutoMapper(typeof(VideoMappingProfile), typeof(YoutuberMappingProfile), typeof(UserMappingProfile));
             return services;
         }
     }

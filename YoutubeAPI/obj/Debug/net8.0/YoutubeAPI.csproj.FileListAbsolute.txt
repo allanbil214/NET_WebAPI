@@ -337,3 +337,8 @@ C:\Users\Allan\Desktop\NET_WebAPI\YoutubeAPI\obj\Debug\net8.0\refint\YoutubeAPI.
 C:\Users\Allan\Desktop\NET_WebAPI\YoutubeAPI\obj\Debug\net8.0\YoutubeAPI.pdb
 C:\Users\Allan\Desktop\NET_WebAPI\YoutubeAPI\obj\Debug\net8.0\YoutubeAPI.genruntimeconfig.cache
 C:\Users\Allan\Desktop\NET_WebAPI\YoutubeAPI\obj\Debug\net8.0\ref\YoutubeAPI.dll
+C:\Users\Allan\Desktop\NET_WebAPI\YoutubeAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Allan\Desktop\NET_WebAPI\YoutubeAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Allan\Desktop\NET_WebAPI\YoutubeAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Allan\Desktop\NET_WebAPI\YoutubeAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Allan\Desktop\NET_WebAPI\YoutubeAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll

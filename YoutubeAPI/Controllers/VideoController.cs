@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YoutubeAPI.Models.DTOs;
 using YoutubeAPI.Services.Interfaces;
@@ -49,6 +50,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<VideoReadDTO>> CreateVideo(VideoCreateDTO videoCreateDTO)
         {
             try
@@ -71,6 +73,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateVideo(int id, VideoUpdateDTO updateVideoDTO)
         {
             try
@@ -96,6 +99,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteVideo(int id, VideoDeleteDTO deleteVideoDto)
         {
             try
@@ -149,6 +153,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpGet("admin/all")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<List<VideoAdminReadDTO>>> GetAllVideosAdmin()
         {
             var videos = await _videoService.GetAllVideosAdminAsync();
@@ -156,6 +161,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpGet("admin/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<VideoAdminReadDTO>> GetVideoAdmin(int id)
         {
             var video = await _videoService.GetVideoByIdAdminAsync(id);
@@ -165,6 +171,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpPost("admin/{id}/restore")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RestoreVideo(int id)
         {
             var success = await _videoService.RestoreVideoAsync(id);
@@ -174,6 +181,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpDelete("admin/{id}/hard-delete")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> HardDeleteVideo(int id)
         {
             var success = await _videoService.HardDeleteVideoAsync(id);

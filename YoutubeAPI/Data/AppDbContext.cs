@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using YoutubeAPI.Models.Entities;
 
 namespace YoutubeAPI.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Video> Videos { get; set; }
         public DbSet<Youtuber> Youtubers { get; set; }
@@ -77,13 +79,59 @@ namespace YoutubeAPI.Data
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ApplicationUser>(e =>
+            {
+                e.Property(u => u.CreatedAt)
+                    .HasDefaultValueSql("datetime('now')");
+                e.Property(u => u.UpdatedAt)
+                    .HasDefaultValueSql("datetime('now')");
+            });
+
             SeedData(modelBuilder);
         }
 
-
         private void SeedData(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = "a1b2c3d4-e5f6-7890-abcd-123456789abc",
+                    Name = "Admin",
+                    NormalizedName = "ADMIN",
+                    ConcurrencyStamp = "role-admin-stamp"
+                },
+                new IdentityRole
+                {
+                    Id = "b2c3d4e5-f6g7-8901-bcde-234567890def",
+                    Name = "User",
+                    NormalizedName = "USER",
+                    ConcurrencyStamp = "role-user-stamp"
+                }
+            );
+
+            modelBuilder.Entity<ApplicationUser>().HasData(
+                new ApplicationUser
+                {
+                    Id = "c3d4e5f6-g7h8-9012-cdef-345678901ghi",
+                    UserName = "admin",
+                    NormalizedUserName = "ADMIN",
+                    Email = "admin@youtube.com",
+                    NormalizedEmail = "ADMIN@YOUTUBE.COM",
+                    EmailConfirmed = true,
+                    SecurityStamp = "d4e5f6g7-h8i9-0123-defg-456789012jkl",
+                    ConcurrencyStamp = "role-admin-stamp",
+                    PasswordHash = "AQAAAAEAACcQAAAAENQjeGx4Pe5dqDKN8rTAMqyjqIV9W2aiP8SsuH3wXaHL9XyeAp/b8sJXwVZCMls4Bg=="
+                }
+            );
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>
+                {
+                    RoleId = "a1b2c3d4-e5f6-7890-abcd-123456789abc",
+                    UserId = "c3d4e5f6-g7h8-9012-cdef-345678901ghi"
+                }
+            );
+
             modelBuilder.Entity<Youtuber>().HasData(
                 new Youtuber
                 {

@@ -9,6 +9,8 @@ namespace YoutubeAPI.Extensions
         {
             services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<IYoutuberService, YoutuberService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IJwtService, JwtService>();
 
             return services;
         }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YoutubeAPI.Data;
 
@@ -10,9 +11,11 @@ using YoutubeAPI.Data;
 namespace YoutubeAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250813115957_JWT_MSIdentity_stuff")]
+    partial class JWT_MSIdentity_stuff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
@@ -41,22 +44,6 @@ namespace YoutubeAPI.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "a1b2c3d4-e5f6-7890-abcd-123456789abc",
-                            ConcurrencyStamp = "role-admin-stamp",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "b2c3d4e5-f6g7-8901-bcde-234567890def",
-                            ConcurrencyStamp = "role-user-stamp",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -140,13 +127,6 @@ namespace YoutubeAPI.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "c3d4e5f6-g7h8-9012-cdef-345678901ghi",
-                            RoleId = "a1b2c3d4-e5f6-7890-abcd-123456789abc"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -246,27 +226,6 @@ namespace YoutubeAPI.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "c3d4e5f6-g7h8-9012-cdef-345678901ghi",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "role-admin-stamp",
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@youtube.com",
-                            EmailConfirmed = true,
-                            IsDeleted = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@YOUTUBE.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENQjeGx4Pe5dqDKN8rTAMqyjqIV9W2aiP8SsuH3wXaHL9XyeAp/b8sJXwVZCMls4Bg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "d4e5f6g7-h8i9-0123-defg-456789012jkl",
-                            TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("YoutubeAPI.Models.Entities.Video", b =>

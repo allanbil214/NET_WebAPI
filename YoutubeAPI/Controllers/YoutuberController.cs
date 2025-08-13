@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YoutubeAPI.Models.DTOs;
 using YoutubeAPI.Services.Interfaces;
@@ -49,6 +50,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<YoutuberReadDTO>> CreateYoutuber(YoutuberCreateDTO youtuberCreateDTO)
         {
             try
@@ -67,6 +69,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateYoutuber(int id, YoutuberUpdateDTO updateYoutuberDTO)
         {
             try
@@ -88,6 +91,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteYoutuber(int id, YoutuberDeleteDTO deleteYoutuberDto)
         {
             try
@@ -123,6 +127,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpGet("{id}/can-delete")]
+        [Authorize]
         public async Task<ActionResult<bool>> CanDeleteYoutuber(int id)
         {
             try
@@ -137,6 +142,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpGet("admin/all")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<List<YoutuberAdminReadDTO>>> GetAllYoutubersAdmin()
         {
             var youtubers = await _youtuberService.GetAllYoutubersAdminAsync();
@@ -144,6 +150,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpGet("admin/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<YoutuberAdminReadDTO>> GetYoutuberAdmin(int id)
         {
             var youtuber = await _youtuberService.GetYoutuberByIdAdminAsync(id);
@@ -153,6 +160,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpPost("admin/{id}/restore")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RestoreYoutuber(int id)
         {
             var success = await _youtuberService.RestoreYoutuberAsync(id);
@@ -162,6 +170,7 @@ namespace YoutubeAPI.Controller
         }
 
         [HttpDelete("admin/{id}/hard-delete")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> HardDeleteYoutuber(int id)
         {
             try
