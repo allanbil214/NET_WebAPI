@@ -10,17 +10,20 @@ namespace YoutubeAPI.Services.Implementations
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IJwtService _jwtService;
         private readonly IMapper _mapper;
 
         public AuthService(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             IJwtService jwtService,
             IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _jwtService = jwtService;
             _mapper = mapper;
         }
@@ -54,7 +57,21 @@ namespace YoutubeAPI.Services.Implementations
                 throw new InvalidOperationException($"User creation failed: {errors}");
             }
 
-            await _userManager.AddToRoleAsync(user, "User");
+            if (registerDto.Roles == null || !registerDto.Roles.Any())
+            {
+                await _userManager.AddToRoleAsync(user, "User");
+            }
+            else
+            {
+                if (await _roleManager.RoleExistsAsync(registerDto.Roles))
+                {
+                    await _userManager.AddToRoleAsync(user, registerDto.Roles);
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Role '{registerDto.Roles}' does not exist.");
+                }
+            }
 
             var roles = await _userManager.GetRolesAsync(user);
 

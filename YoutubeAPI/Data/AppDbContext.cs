@@ -41,6 +41,7 @@ namespace YoutubeAPI.Data
                     .HasDefaultValueSql("datetime('now')");
                 e.Property(v => v.UpdatedAt)
                     .HasDefaultValueSql("datetime('now')");
+                e.Property(v => v.IsDeleted).HasDefaultValue(false);
 
                 e.HasIndex(v => v.Url)
                     .IsUnique();
@@ -69,6 +70,7 @@ namespace YoutubeAPI.Data
                     .HasDefaultValueSql("datetime('now')");
                 e.Property(y => y.UpdatedAt)
                     .HasDefaultValueSql("datetime('now')");
+                e.Property(y => y.IsDeleted).HasDefaultValue(false);
 
                 e.HasIndex(y => y.Email)
                     .IsUnique();

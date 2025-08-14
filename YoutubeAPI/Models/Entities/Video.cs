@@ -3,9 +3,9 @@ namespace YoutubeAPI.Models.Entities
     public class Video
     {
         public int Id { get; set; }
-        public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-        public string Url { get; set; } = string.Empty;
+        public string Title { get; set; } 
+        public string Description { get; set; } 
+        public string Url { get; set; } 
         public int ViewCount { get; set; } = 0;
         public int LikeCount { get; set; } = 0;
         public int DislikeCount { get; set; } = 0;
@@ -18,6 +18,6 @@ namespace YoutubeAPI.Models.Entities
 
         public int YoutuberID { get; set; }
 
-        public virtual Youtuber Youtuber { get; set; } = null;
+        public virtual Youtuber Youtuber { get; set; }
     }
 }

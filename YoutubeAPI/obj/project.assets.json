@@ -4473,11 +4473,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Allan\\Desktop\\NET_WebAPI\\YoutubeAPI\\YoutubeAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Allan\\source\\repos\\NET_WebAPI\\YoutubeAPI\\YoutubeAPI.csproj",
       "projectName": "YoutubeAPI",
-      "projectPath": "C:\\Users\\Allan\\Desktop\\NET_WebAPI\\YoutubeAPI\\YoutubeAPI.csproj",
+      "projectPath": "C:\\Users\\Allan\\source\\repos\\NET_WebAPI\\YoutubeAPI\\YoutubeAPI.csproj",
       "packagesPath": "C:\\Users\\Allan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Allan\\Desktop\\NET_WebAPI\\YoutubeAPI\\obj\\",
+      "outputPath": "C:\\Users\\Allan\\source\\repos\\NET_WebAPI\\YoutubeAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4592,7 +4592,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
