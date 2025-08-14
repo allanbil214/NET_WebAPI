@@ -18,7 +18,7 @@ namespace YoutubeAPI.Controller
             _youtuberService = youtuberService;
         }
 
-        [HttpGet]
+        [HttpGet("getYoutubers")]
         public async Task<ActionResult<List<YoutuberReadDTO>>> GetYoutubers()
         {
             try
@@ -32,7 +32,7 @@ namespace YoutubeAPI.Controller
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getYoutuber/{id}")]
         public async Task<ActionResult<YoutuberReadDTO>> GetYoutuber(int id)
         {
             try
@@ -49,7 +49,7 @@ namespace YoutubeAPI.Controller
             }
         }
 
-        [HttpPost]
+        [HttpPost("addYoutuber")]
         [Authorize]
         public async Task<ActionResult<YoutuberReadDTO>> CreateYoutuber(YoutuberCreateDTO youtuberCreateDTO)
         {
@@ -68,7 +68,7 @@ namespace YoutubeAPI.Controller
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("updateYoutuber/{id}")]
         [Authorize]
         public async Task<IActionResult> UpdateYoutuber(int id, YoutuberUpdateDTO updateYoutuberDTO)
         {

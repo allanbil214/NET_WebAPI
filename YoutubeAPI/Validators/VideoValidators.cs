@@ -40,11 +40,14 @@ namespace YoutubeAPI.Validators
 
         private bool BeAYouTubeUrl(string url)
         {
-            if (string.IsNullOrEmpty(url)) return false;
-            
-            var uri = new Uri(url);
+            if (string.IsNullOrWhiteSpace(url)) return false;
+
+            if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
+                return false;
+
             return uri.Host.Contains("youtube.com") || uri.Host.Contains("youtu.be");
         }
+
     }
 
     public class VideoUpdateDTOValidator : AbstractValidator<VideoUpdateDTO>

@@ -18,7 +18,7 @@ namespace YoutubeAPI.Controller
             _videoService = videoService;
         }
 
-        [HttpGet]
+        [HttpGet("getVideos")]
         public async Task<ActionResult<List<VideoReadDTO>>> GetVideos()
         {
             try
@@ -32,7 +32,7 @@ namespace YoutubeAPI.Controller
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getVideo/{id}")]
         public async Task<ActionResult<VideoReadDTO>> GetVideo(int id)
         {
             try
@@ -49,7 +49,7 @@ namespace YoutubeAPI.Controller
             }
         }
 
-        [HttpPost]
+        [HttpPost("addVideo")]
         [Authorize]
         public async Task<ActionResult<VideoReadDTO>> CreateVideo(VideoCreateDTO videoCreateDTO)
         {
@@ -72,7 +72,7 @@ namespace YoutubeAPI.Controller
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("updateVideo/{id}")]
         [Authorize]
         public async Task<IActionResult> UpdateVideo(int id, VideoUpdateDTO updateVideoDTO)
         {
@@ -98,7 +98,7 @@ namespace YoutubeAPI.Controller
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("deleteVideo/{id}")]
         [Authorize]
         public async Task<IActionResult> DeleteVideo(int id, VideoDeleteDTO deleteVideoDto)
         {
@@ -120,7 +120,7 @@ namespace YoutubeAPI.Controller
             }
         }
 
-        [HttpGet("youtuber/{youtuberId}")]
+        [HttpGet("youtuber/getVideo{youtuberId}")]
         public async Task<ActionResult<List<VideoReadDTO>>> GetVideoByYoutuber(int youtuberId)
         {
             try
@@ -152,7 +152,7 @@ namespace YoutubeAPI.Controller
             }
         }
 
-        [HttpGet("admin/all")]
+        [HttpGet("admin/getAll")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<List<VideoAdminReadDTO>>> GetAllVideosAdmin()
         {
@@ -160,7 +160,7 @@ namespace YoutubeAPI.Controller
             return Ok(videos);
         }
 
-        [HttpGet("admin/{id}")]
+        [HttpGet("admin/getVideo/{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<VideoAdminReadDTO>> GetVideoAdmin(int id)
         {
